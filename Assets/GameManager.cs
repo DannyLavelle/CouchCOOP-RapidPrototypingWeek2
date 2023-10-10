@@ -39,20 +39,20 @@ public class GameManager : MonoBehaviour
 
         //PlayerJoinedGame += OnPlayerJoined;
     }
-    public void OnPlayerJoined(PlayerInput playerInput)
-    {
-        Debug.Log("Joined");
-        playerlist.Add(playerInput);
-        if(PlayerJoinedGame != null)
-        {
-            PlayerJoinedGame(playerInput);
-        }
-    }
-    public void onPlayerLeft (PlayerInput playerinput)
-    {
-        Debug.Log("left");
-    }
-    //public event Action<PlayerInput> onPlayerJoined;
+    //public void OnPlayerJoined(PlayerInput playerInput)
+    //{
+    //    Debug.Log("Joined");
+    //    playerlist.Add(playerInput);
+    //    if(PlayerJoinedGame != null)
+    //    {
+    //        PlayerJoinedGame(playerInput);
+    //    }
+    //}
+    //public void onPlayerLeft (PlayerInput playerinput)
+    //{
+    //    Debug.Log("left");
+    //}
+    ////public event Action<PlayerInput> onPlayerJoined;
 
 
 

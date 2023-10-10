@@ -22,4 +22,8 @@ public class InputManager : MonoBehaviour
     {
         cscript.OnMove(context);
     }
+    public void Attack(InputAction.CallbackContext context)
+    {
+        cscript.Attack(context);
+    }
 }

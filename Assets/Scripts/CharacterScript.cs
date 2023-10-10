@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static weaponattack;
 
 public class CharacterScript : MonoBehaviour
 {
@@ -18,7 +19,10 @@ public class CharacterScript : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     public Vector2 movementInput;
-
+    public Transform WeaponContainer;
+    private bool haveWeapon = false;
+    private bool wantPickUp;
+    public GameObject[] weaponPrefabs;
     private void Awake()
     {
         //playerinput = new PlayerInput();
@@ -36,7 +40,7 @@ public class CharacterScript : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -52,8 +56,8 @@ public class CharacterScript : MonoBehaviour
     }
     private void Update()
     {
-         //horizontalInput = Input.GetAxis("Horizontal");
-         //verticalInput = Input.GetAxis("Vertical");
+        //horizontalInput = Input.GetAxis("Horizontal");
+        //verticalInput = Input.GetAxis("Vertical");
         // Movement input
 
         // Attack input
@@ -90,11 +94,63 @@ public class CharacterScript : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>().normalized;
-        
+
         // Normalize the input vector to prevent diagonal movement from being faster
         movementInput.Normalize();
-        
+
         // Move the character
-    
+
     }
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if(IsChildEmpty(WeaponContainer))
+        {
+            haveWeapon = false;
+            wantPickUp = true;
+        }
+        else
+        {
+            haveWeapon = true;
+            Transform child = WeaponContainer.GetChild(0);
+            weaponattack weaponAttack = child.GetComponent<weaponattack>();
+            weaponAttack.attackWithWeapon = true;
+        }
+    }
+    bool IsChildEmpty(Transform parent)// true for no weapon false for weapon
+    {
+        if(parent.childCount == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+     
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Weapon" && wantPickUp == true)
+        {
+            weaponattack Weapon = collision.gameObject.GetComponent<weaponattack>();
+
+
+            if (Weapon != null)
+            {
+                weaponattack.WeaponType WT = Weapon.weapontype;
+                switch(WT)
+                {
+                    case WeaponType.Sword:
+                    Instantiate(weaponPrefabs[0],WeaponContainer);
+                    wantPickUp = false;
+                    Destroy(collision.gameObject);
+                    break;
+                }
+
+                // Now you have the WeaponType enum value associated with the collided weapon.
+                // You can use WT in your logic as needed.
+            }
+        }
+    }
+
 }

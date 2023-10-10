@@ -1,23 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SwordAim : MonoBehaviour
+public class InstantRotation : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    private PlayersInput playerInput;
     private InputAction aim;
     private Transform playerTransform;
-    private float rotationSpeed = 5f;
-
     private Vector2 aimInput;
-
-    private Quaternion initialRotation;
-
+    [HideInInspector] public bool isAttacking = false;
     private void Awake()
     {
-        playerInput = new PlayerInput();
-        initialRotation = transform.rotation;
+        playerInput = new PlayersInput();
     }
 
     private void OnEnable()
@@ -34,14 +27,17 @@ public class SwordAim : MonoBehaviour
     private void Update()
     {
         aimInput = aim.ReadValue<Vector2>().normalized;
-
-        // Calculate the angle based on the input or use the initial rotation if there's no input
-        float angle = aimInput != Vector2.zero
-            ? Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg
-            : initialRotation.eulerAngles.z;
-
-        // Smoothly interpolate between the current rotation and the calculated angle
-        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        aimWeapon();
+        
+    }
+    void aimWeapon()
+    {
+        if (aimInput != Vector2.zero && isAttacking == false)
+        {
+            // Calculate the angle based on the input and set the rotation directly
+            float angle = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg;
+            //Debug.Log(angle);
+            transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
+        }
     }
 }

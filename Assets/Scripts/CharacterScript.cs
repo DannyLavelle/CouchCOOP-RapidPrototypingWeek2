@@ -145,6 +145,16 @@ public class CharacterScript : MonoBehaviour
                     wantPickUp = false;
                     Destroy(collision.gameObject);
                     break;
+                    case WeaponType.bow:
+                    Instantiate(weaponPrefabs[1], WeaponContainer);
+                    wantPickUp = false;
+                    Destroy(collision.gameObject);
+                    break;
+                    case WeaponType.shield:
+                    Instantiate(weaponPrefabs[2], WeaponContainer);
+                    wantPickUp = false;
+                    Destroy(collision.gameObject);
+                    break;
                 }
 
                 // Now you have the WeaponType enum value associated with the collided weapon.

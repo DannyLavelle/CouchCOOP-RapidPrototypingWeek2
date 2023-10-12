@@ -12,7 +12,7 @@ public class weaponattack : MonoBehaviour
     public WeaponType weapontype;
     public GameObject arrowPrefab;
     private bool isOnCooldown = false;
-
+    bool canFire = true;
     // The duration of the cooldown in seconds
     public float cooldownDuration = 2f;
     public enum WeaponType
@@ -67,6 +67,7 @@ public class weaponattack : MonoBehaviour
                 cooldownDuration = 1f;
                 dmg = 0;
                 bowAttack();
+                
                 break ;
                 
                 case WeaponType.shield:
@@ -75,6 +76,7 @@ public class weaponattack : MonoBehaviour
                 ShieldAttack();
                 break;
             }
+            
         }
         
     }
@@ -124,22 +126,29 @@ public class weaponattack : MonoBehaviour
     }
     void bowAttack()
     {
-        Quaternion arrowRotation = transform.rotation;
-        Debug.Log("firing rotation:" + transform.rotation);
+        if(canFire)
+        {
+            Quaternion arrowRotation = transform.rotation;
+            Debug.Log("firing rotation:" + transform.rotation);
 
-        GameObject newArrow = Instantiate(arrowPrefab, transform.position, parentTransform.rotation * Quaternion.Euler(0f, 0f, 90f));
+            GameObject newArrow = Instantiate(arrowPrefab, transform.position, parentTransform.rotation * Quaternion.Euler(0f, 0f, 90f));
 
-        // Ensure the arrow's initial position matches the spawner's position
-        //newArrow.transform.position = transform.position;
+            // Ensure the arrow's initial position matches the spawner's position
+            //newArrow.transform.position = transform.position;
 
-        // Set the new arrow as a child of the parentTransform (weaponattack)
-        //newArrow.transform.parent = parentTransform;
+            // Set the new arrow as a child of the parentTransform (weaponattack)
+            //newArrow.transform.parent = parentTransform;
+            attackWithWeapon = false;
 
-        InstantRotation swordAim = parentTransform.GetComponent<InstantRotation>();
-        swordAim.isAttacking = false;
-        attackWithWeapon = false;
-        begunAttacking = false;
-        StartCooldown();
+            InstantRotation swordAim = parentTransform.GetComponent<InstantRotation>();
+            swordAim.isAttacking = false;
+            canFire  = false;
+            StartCooldown();
+            canFire = true;
+            begunAttacking = false;
+        }
+   
+        
     }
     void ShieldAttack()
     {
@@ -186,6 +195,9 @@ public class weaponattack : MonoBehaviour
                 StartCoroutine(TriggerCoroutine(2, collision));
             }
             //enemy attack script
+            HitManager Hit = collision.gameObject.GetComponent<HitManager>();
+            Debug.Log(Hit);
+            Hit.Hit(dmg);
             attackICD = false;
         }
     }

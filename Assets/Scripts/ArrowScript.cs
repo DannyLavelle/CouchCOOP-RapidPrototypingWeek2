@@ -7,6 +7,7 @@ public class ArrowScript : MonoBehaviour
     // Start is called before the first frame update
     public float speed = 10f; // Speed at which the arrow flies
     public float maxDistance = 10f; // Maximum distance the arrow can travel
+    public float dmg = 3.34f;
    // Define the enemy layer to detect collisions
 
     private Vector3 initialPosition; // The starting position of the arrow
@@ -34,7 +35,8 @@ public class ArrowScript : MonoBehaviour
     {
         if (collision.gameObject.tag=="Enemy")
         {
-            //enemy damage
+            HitManager hit = collision.gameObject.GetComponent<HitManager>();
+            hit.Hit(dmg);
         }
     }
 

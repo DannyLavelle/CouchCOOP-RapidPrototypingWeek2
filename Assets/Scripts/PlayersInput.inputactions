@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChargedAttack",
+                    "name": "Drop",
                     "type": "Button",
                     "id": "c02bc498-6b20-4d43-8977-8e274b377e1f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "8ed22209-2a52-4f41-8aeb-2c26d4ff1ed8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -55,8 +64,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Mouse",
-                    "id": "1827c529-614f-4c1b-87fe-105138ffdfa4",
+                    "name": "Keyboard",
+                    "id": "73f5b522-0096-4a07-8c83-5e5f1434e052",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -67,8 +76,8 @@
                 },
                 {
                     "name": "up",
-                    "id": "e8b41250-1b78-401b-bdf4-1bfd3b9ab592",
-                    "path": "<Keyboard>/w",
+                    "id": "786ed8d6-0314-4fe3-8cc1-fc2c40e1a7c0",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -78,8 +87,8 @@
                 },
                 {
                     "name": "down",
-                    "id": "405f21f7-2fab-499a-bef8-a7c213c990a5",
-                    "path": "<Keyboard>/s",
+                    "id": "4e88b24e-a529-4dad-afd0-9ab58ef52021",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -89,8 +98,8 @@
                 },
                 {
                     "name": "left",
-                    "id": "6d2f4f2e-2dc0-4833-a4b7-93ccffc58093",
-                    "path": "<Keyboard>/a",
+                    "id": "2e2505ec-9c52-4664-b69f-61159c87141a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -100,8 +109,63 @@
                 },
                 {
                     "name": "right",
-                    "id": "3939482c-cd62-4f22-b619-128e92be7960",
-                    "path": "<Keyboard>/d",
+                    "id": "6b4138ca-e61d-429d-9831-0026329eb93b",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard Alt",
+                    "id": "93d20bc4-1924-4888-9d07-8c899c8d6236",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "5d2e6039-7047-4d1e-85c7-9188be1cbf03",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "d028a45a-6713-4954-8d7c-f88eade2d7ed",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "ec5e68a1-0029-4a94-bd19-550c080447d5",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "c3de718e-f2ce-49bc-9928-2afd4c4d0a80",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -199,23 +263,67 @@
                 },
                 {
                     "name": "",
+                    "id": "2fc5627b-899c-448f-ae3f-e951e8bbbd12",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0df092fd-4963-46c1-b71d-d9aa3279d8c6",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "ChargedAttack",
+                    "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "9cb51a4b-e446-4bad-b683-199fcaa6a91e",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "ChargedAttack",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04744b04-a5a3-43ea-a3e5-546075201d43",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "955a3da5-e510-4bd7-a448-6af7e18c5a49",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7140aed4-f424-449f-bbb0-24019c55b7f0",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

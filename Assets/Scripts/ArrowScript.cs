@@ -8,8 +8,8 @@ public class ArrowScript : MonoBehaviour
     public float speed = 10f; // Speed at which the arrow flies
     public float maxDistance = 10f; // Maximum distance the arrow can travel
     public float dmg = 3.34f;
-   // Define the enemy layer to detect collisions
-
+    // Define the enemy layer to detect collisions
+    float weaponGrowth;
     private Vector3 initialPosition; // The starting position of the arrow
 
     void Start()
@@ -22,6 +22,12 @@ public class ArrowScript : MonoBehaviour
 
     void Update()
     {
+        weaponGrowth += 1 * Time.deltaTime;
+        if (weaponGrowth > 10)
+        {
+            dmg += 1;
+            weaponGrowth = 0;
+        }
         // Calculate the current distance the arrow has traveled
         float currentDistance = Vector3.Distance(initialPosition, transform.position);
 

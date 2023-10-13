@@ -24,10 +24,18 @@ public class EnemyScript : MonoBehaviour
             FindClosestPlayer();
         }
 
-        if (targetPlayer != null && touchingplayer == false)
+        if (targetPlayer != null )
         {
             Vector3 direction = (targetPlayer.position - transform.position).normalized;
-            transform.Translate(direction * moveSpeed * Time.deltaTime);
+            if( touchingplayer == false)
+            {
+                transform.Translate(direction * moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(direction * (moveSpeed/2) * Time.deltaTime);
+            }
+            
         }
     }
 
@@ -56,17 +64,28 @@ public class EnemyScript : MonoBehaviour
 
         if(collision.gameObject.tag == "Player")
         {
-            if (Cooldown<= 1)
-            {
-                Cooldown += Time.deltaTime;
-            }
-            else
-            {
-                Cooldown = 0;
-                HitManager hit = collision.gameObject.GetComponent<HitManager>();
-                hit.Hit(dmg);
-            }
+
             touchingplayer = true;
+            HitManager hit = collision.gameObject.GetComponent<HitManager>();
+            hit.Hit(dmg*Time.deltaTime);
+            //if (Cooldown<= 1)
+            //{
+            //    Cooldown += Time.deltaTime;
+            //}
+            //else
+            //{
+            //    Cooldown = 0;
+            //    HitManager hit = collision.gameObject.GetComponent<HitManager>();
+            //    hit.Hit(dmg);
+            //}
+            //touchingplayer = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            touchingplayer = false;
         }
     }
 }

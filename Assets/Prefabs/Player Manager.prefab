@@ -73,7 +73,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3969005672722517727}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: onAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 693bb420-3b8e-4629-bf1c-d5961ffae104
     m_ActionName: 'Player/Aim[/Mouse/delta]'
   - m_PersistentCalls:
@@ -109,9 +121,37 @@ MonoBehaviour:
     m_ActionId: 41937dc2-9e9d-4b0b-9b58-3d07be9c5cd0
     m_ActionName: 'Player/Attack[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3969005672722517727}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: onDrop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c02bc498-6b20-4d43-8977-8e274b377e1f
     m_ActionName: 'Player/ChargedAttack[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3969005672722517727}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8ed22209-2a52-4f41-8aeb-2c26d4ff1ed8
+    m_ActionName: 'Player/Pause[/Keyboard/escape,/XInputControllerWindows/start,/XInputControllerWindows/select]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

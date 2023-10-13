@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static Unity.VisualScripting.Dependencies.Sqlite.SQLite3;
+
 using static UnityEngine.GridBrushBase;
 
 public class weaponattack : MonoBehaviour
@@ -13,6 +13,7 @@ public class weaponattack : MonoBehaviour
     public GameObject arrowPrefab;
     private bool isOnCooldown = false;
     bool canFire = true;
+    float weaponGrowth;
     // The duration of the cooldown in seconds
     public float cooldownDuration = 2f;
     public enum WeaponType
@@ -36,10 +37,17 @@ public class weaponattack : MonoBehaviour
 
     private void Start()
     {
+        attackWithWeapon = false;
        
     }
     private void Update()
     {
+        weaponGrowth += 1*Time.deltaTime;
+        if(weaponGrowth > 10)
+        {
+            dmg += 1;
+              weaponGrowth = 0;
+        }
         if(attackWithWeapon)
         {
             parentTransform = transform.parent;
@@ -187,7 +195,7 @@ public class weaponattack : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (attackWithWeapon && attackICD && collision.gameObject.tag == "Enemy")
+        if (attackWithWeapon /*&& attackICD*/ && collision.gameObject.tag == "Enemy")
         {
             if (weapontype == WeaponType.shield)
             {
@@ -198,14 +206,14 @@ public class weaponattack : MonoBehaviour
             HitManager Hit = collision.gameObject.GetComponent<HitManager>();
             Debug.Log(Hit);
             Hit.Hit(dmg);
-            attackICD = false;
+            //attackICD = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (attackWithWeapon && collision.gameObject.tag == "Enemy")
         {
-            attackICD = true;
+            //attackICD = true;
         }
     }
     private void StartCooldown()

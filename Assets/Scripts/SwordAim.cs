@@ -3,30 +3,30 @@ using UnityEngine.InputSystem;
 
 public class InstantRotation : MonoBehaviour
 {
-    private PlayersInput playerInput;
+    //private PlayersInput playerInput;
     private InputAction aim;
     private Transform playerTransform;
     private Vector2 aimInput;
     [HideInInspector] public bool isAttacking = false;
     private void Awake()
     {
-        playerInput = new PlayersInput();
+        //playerInput = new PlayersInput();
     }
 
     private void OnEnable()
     {
-        aim = playerInput.Player.Aim;
-        aim.Enable();
+        //aim = playerInput.Player.Aim;
+        //aim.Enable();
     }
 
     private void OnDisable()
     {
-        aim.Disable();
+        //aim.Disable();
     }
 
     private void Update()
     {
-        aimInput = aim.ReadValue<Vector2>().normalized;
+        //aimInput = aim.ReadValue<Vector2>().normalized;
         aimWeapon();
         
     }
@@ -39,5 +39,25 @@ public class InstantRotation : MonoBehaviour
             //Debug.Log(angle);
             transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
         }
+    }
+    public void onAim(InputAction.CallbackContext context)
+    {
+        aimInput = context.ReadValue<Vector2>();
+    }
+    public void onDrop(InputAction.CallbackContext context)
+    {
+        Transform child = gameObject.transform.GetChild(0);
+
+        if (child != null)
+        {
+            WeaponDrop Drop = child.GetComponent<WeaponDrop>();
+            Drop.DropWeapon();
+        }
+        
+        //if (childObject != null)
+        //{
+        //    Instantiate(childObject);
+        //    Destroy(childObject);
+        //}
     }
 }
